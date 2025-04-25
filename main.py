@@ -35,31 +35,11 @@ def audiolivro():
 WSDL_URL = 'https://soap.correios.com.br/Calculador/CalcPrecoPrazo.asmx?WSDL'
 soap_client = Client(WSDL_URL)
 
-# endpoint para cálculo de frete
+# endpoint para cálculo de frete (stub fixo R$ 14,50)
 @app.route('/calculate-shipping')
 def calculate_shipping():
-    cep_destino = request.args.get('cep', '').replace('-', '').strip()
-    if len(cep_destino) != 8 or not cep_destino.isdigit():
-        return jsonify({'erro': 'CEP inválido'}), 400
-
-    resp = soap_client.service.CalcPrecoPrazo(
-        nCdEmpresa='',
-        sDsSenha='',
-        nCdServico='04510',
-        sCepOrigem='01001000',
-        sCepDestino=cep_destino,
-        nVlPeso=0.300,
-        nCdFormato=1,
-        nVlComprimento=20,
-        nVlAltura=5,
-        nVlLargura=15,
-        nVlDiametro=0,
-        sCdMaoPropria='N',
-        nVlValorDeclarado=0,
-        sCdAvisoRecebimento='N'
-    )
-    valor_str = resp.Servicos.cServico.Valor  # ex: "12,50"
-    frete = float(valor_str.replace(',', '.'))
+    # aqui simplesmente devolvemos o frete fixo
+    frete = 14.50
     return jsonify({'valor_frete': frete})
 
 # endpoint que recebe e salva o comprovante físico
