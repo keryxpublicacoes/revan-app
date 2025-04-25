@@ -41,41 +41,39 @@
       background: rgba(0,0,0,0.85);
       border-radius: 12px;
       display: flex;
-      flex-wrap: wrap;
+      align-items: flex-start;
       overflow: hidden;
     }
-    .hero .images {
+    .image-capa, .image-mockup {
       flex: 1 1 300px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
       padding: 20px;
     }
-    .hero .images img {
+    .image-capa img,
+    .image-mockup img {
       width: 100%;
       border-radius: 8px;
       object-fit: cover;
     }
-    .hero .info {
+    .info {
       flex: 2 1 400px;
       padding: 20px;
     }
-    .hero .info h1 {
+    .info h1 {
       font-family: 'TTSuperMolot', serif;
       font-size: 2.4em;
       color: #d3ac67;
       margin-bottom: 8px;
     }
-    .hero .info h2 {
+    .info h2 {
       font-size: 1.4em;
       margin-bottom: 12px;
     }
-    .hero .info p {
+    .info p {
       font-size: 0.9375em;
       line-height: 1.5;
       margin-bottom: 10px;
     }
-    .hero .info .cta-text {
+    .info .cta-text {
       text-align: center;
       margin-top: 20px;
       font-style: italic;
@@ -104,8 +102,8 @@
 
     @media(max-width:600px) {
       section.hero { flex-direction: column; }
-      .hero .info h1 { font-size: 1.8em; }
-      .hero .info h2 { font-size: 1.2em; }
+      .info h1 { font-size: 1.8em; }
+      .info h2 { font-size: 1.2em; }
     }
   </style>
 </head>
@@ -116,17 +114,21 @@
   </div>
 
   <section class="hero">
-    <div class="images">
+    <div class="image-capa">
       <img src="../static/capa_livro.jpg" alt="Capa do Livro">
-      <img src="../static/mockup_livro.png" alt="Mockup do Livro">
     </div>
+
     <div class="info">
       <h1>REVAN</h1>
       <h2>Um Testemunho de Fé e Superação</h2>
-      <p>Revan nasceu rejeitado. Cresceu entre abusos, violência e dor… mas nada disso foi maior que o chamado de Deus.</p>
-      <p>Das trevas para a luz. Da morte para a vida. Este livro é um testemunho vivo de que Jesus ainda transforma histórias, resgata os esquecidos e liberta os que estão no fundo do poço.</p>
-      <p>Se você acha que não tem mais jeito, este livro é pra você. Porque quando o Senhor entra em cena, tudo muda. Revan é mais que uma história… é um milagre.</p>
+      <p style="font-size:0.875em;">Revan nasceu rejeitado. Cresceu entre abusos, violência e dor… mas nada disso foi maior que o chamado de Deus.</p>
+      <p style="font-size:0.875em;">Das trevas para a luz. Da morte para a vida. Este livro é um testemunho vivo de que Jesus ainda transforma histórias, resgata os esquecidos e liberta os que estão no fundo do poço.</p>
+      <p style="font-size:0.875em;">Se você acha que não tem mais jeito, este livro é pra você. Porque quando o Senhor entra em cena, tudo muda. Revan é mais que uma história… é um milagre.</p>
       <div class="cta-text">Garanta já o seu exemplar e transforme sua história!</div>
+    </div>
+
+    <div class="image-mockup">
+      <img src="../static/mockup_livro.png" alt="Mockup do Livro">
     </div>
   </section>
 
