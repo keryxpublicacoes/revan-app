@@ -32,7 +32,7 @@ def audiolivro():
     return render_template('audiolivro.html')
 
 # WSDL dos Correios
-WSDL_URL = 'https://soap.correios.com.br/Calculador/CalcPrecoPrazo.asmx?WSDL'
+WSDL_URL = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx?wsdl'
 soap_client = Client(WSDL_URL)
 
 # endpoint para cálculo de frete
