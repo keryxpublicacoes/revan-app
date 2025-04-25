@@ -5,104 +5,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Revan – Um Testemunho de Fé e Superação</title>
   <style>
-    /* Importa a fonte */
     @font-face {
       font-family: 'TTSuperMolot';
       src: url('../static/TTSuperMolotNeue.woff2') format('woff2'),
            url('../static/TTSuperMolotNeue.woff')  format('woff');
-      font-weight: normal; font-style: normal;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin:0; padding:0; }
     html, body {
-      height: 100%;
-      font-family: Arial, sans-serif;
-      color: #fff;
-      background: url('../static/fundo.jpg') no-repeat center center fixed;
-      background-size: cover;
+      height:100%; font-family: Arial, sans-serif; color:#fff;
+      background: url('../static/fundo.jpg') center/cover no-repeat fixed;
     }
     .social-bar {
-      background: rgba(0,0,0,0.7);
-      padding: 8px;
-      text-align: center;
+      background: rgba(0,0,0,0.7); text-align:center; padding:8px;
     }
     .social-bar span {
-      margin: 0 12px;
-      font-size: 0.9em;
-      vertical-align: middle;
+      margin:0 12px; font-size:0.9em; vertical-align:middle;
     }
     .social-bar img {
-      vertical-align: middle;
-      width: 20px; height: 20px;
-      margin-right: 6px;
+      vertical-align:middle; width:20px; height:20px; margin-right:6px;
     }
 
     .hero {
-      max-width: 960px;
-      margin: 40px auto;
-      background: rgba(0,0,0,0.85);
-      border-radius: 12px;
-      overflow: hidden;
-      display: flex;
-      flex-wrap: wrap;
+      max-width:960px; margin:40px auto;
+      background: rgba(0,0,0,0.85); border-radius:12px;
+      display:flex; flex-wrap:wrap; overflow:hidden;
     }
     .hero .cover {
-      flex: 1 1 300px;
+      flex:1 1 300px;
       background: url('../static/capa_livro.jpg') center/cover no-repeat;
-      min-height: 300px;
+      min-height:300px;
     }
     .hero .info {
-      flex: 2 1 400px;
-      padding: 20px;
+      flex:2 1 400px; padding:20px;
     }
     .hero .info h1 {
       font-family:'TTSuperMolot', serif;
-      font-size: 2.4em;
-      color: #d3ac67;
-      margin-bottom: 8px;
+      font-size:2.4em; color:#d3ac67; margin-bottom:8px;
     }
     .hero .info h2 {
-      font-size: 1.4em;
-      margin-bottom: 12px;
+      font-size:1.4em; margin-bottom:12px;
     }
-    /* <p> de sinopse encurtado em 1pt (~15px) */
-    .hero .info .synopsis p,
-    .hero .info .full-synopse p {
-      font-size: 0.9375em;
-      line-height: 1.5;
-      margin-bottom: 10px;
+    .hero .info p {
+      font-size:0.9375em; line-height:1.5; margin-bottom:10px;
     }
     .hero .info .cta-text {
-      text-align: center;
-      margin-top: 20px;
-      font-style: italic;
+      text-align:center; margin-top:20px; font-style:italic;
     }
 
-    .cta-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
+    nav.cta-bar {
+      position:fixed; bottom:0; left:0; width:100%;
       background: rgba(0,0,0,0.8);
-      display: flex;
-      justify-content: space-around;
+      display:flex; justify-content:space-around;
     }
-    .cta-bar a {
-      color: #d3ac67;
-      text-decoration: none;
-      padding: 12px 0;
-      flex: 1;
-      text-align: center;
-      font-weight: bold;
-      font-size: 1em;
+    nav.cta-bar a {
+      flex:1; text-align:center; padding:12px 0;
+      color:#d3ac67; text-decoration:none; font-weight:bold;
     }
-    .cta-bar a .icon {
-      margin-right: 6px;
-    }
+    nav.cta-bar .icon { margin-right:6px; }
 
-    @media (max-width: 600px) {
-      .hero { flex-direction: column; }
-      .hero .info h1 { font-size: 1.8em; }
-      .hero .info h2 { font-size: 1.2em; }
+    @media(max-width:600px){
+      .hero { flex-direction:column; }
+      .hero .info h1 { font-size:1.8em; }
+      .hero .info h2 { font-size:1.2em; }
     }
   </style>
 </head>
@@ -117,13 +81,9 @@
     <div class="info">
       <h1>REVAN</h1>
       <h2>Um Testemunho de Fé e Superação</h2>
-      <div class="synopsis">
-        <p>Revan nasceu rejeitado. Cresceu entre abusos, violência e dor. Enfrentou o crime, conheceu o cárcere, sentiu o peso do inferno… mas nada disso foi maior que o chamado de Deus.</p>
-      </div>
-      <div class="full-synopse">
-        <p>Das trevas para a luz. Da morte para a vida. Este livro é um testemunho vivo de que Jesus ainda transforma histórias, ainda resgata os esquecidos e ainda liberta os que estão no fundo do poço.</p>
-        <p>Se você acha que não tem mais jeito, este livro é pra você. Porque quando o Senhor entra em cena, tudo muda. Revan é mais que uma história… é um milagre.</p>
-      </div>
+      <p>Revan nasceu rejeitado. Cresceu entre abusos, violência e dor… mas nada disso foi maior que o chamado de Deus.</p>
+      <p>Das trevas para a luz. Da morte para a vida. Este livro é um testemunho vivo de que Jesus ainda transforma histórias, resgata os esquecidos e liberta os que estão no fundo do poço.</p>
+      <p>Se você acha que não tem mais jeito, este livro é pra você. Porque quando o Senhor entra em cena, tudo muda. Revan é mais que uma história… é um milagre.</p>
       <div class="cta-text">Garanta já o seu exemplar e transforme sua história!</div>
     </div>
   </section>
