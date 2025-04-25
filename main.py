@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+'from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 from zeep import Client, Transport
 from requests import Session
@@ -19,15 +19,15 @@ def index():
 
 @app.route('/fisico')
 def fisico():
-    return render_template('fisico.html')
+    return render_template('fisico')
 
 @app.route('/ebook')
 def ebook():
-    return render_template('ebook.html')
+    return render_template('ebook')
 
 @app.route('/audiolivro')
 def audiolivro():
-    return render_template('audiolivro.html')
+    return render_template('audiolivro')
 
 # WSDL dos Correios
 WSDL_URL = 'https://soap.correios.com.br/Calculador/CalcPrecoPrazo.asmx?WSDL'
