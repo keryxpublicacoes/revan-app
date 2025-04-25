@@ -1,72 +1,64 @@
-<!-- templates/ebook.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Revan – Compra de e-Book</title>
   <style>
     @font-face {
-      font-family: 'TTSuperMolot';
-      src: url('../static/TTSuperMolotNeue.woff2') format('woff2'),
-           url('../static/TTSuperMolotNeue.woff')   format('woff');
+      font-family:'TTSuperMolot';
+      src:url('../static/TTSuperMolotNeue.woff2') format('woff2'),
+          url('../static/TTSuperMolotNeue.woff')   format('woff');
     }
-    * { box-sizing:border-box; margin:0; padding:0 }
-    html,body {
-      height:100%;
-      font-family:Arial,sans-serif;
-      color:#fff;
-      background:url('../static/fundo.jpg') no-repeat center center fixed;
-      background-size:cover;
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html, body {
+      height:100%; font-family:Arial,sans-serif; color:#fff;
+      background: url('../static/fundo.jpg') center/cover no-repeat fixed;
       padding-bottom:60px;
     }
     .back-btn {
       position:fixed; bottom:10px; left:10px; z-index:1000;
     }
     .back-btn a {
-      background:rgba(0,0,0,0.7);
-      color:#d3ac67;
-      padding:4px 8px;
-      border-radius:4px;
-      text-decoration:none;
-      font-weight:bold;
-      font-size:0.75em;
+      background:rgba(0,0,0,0.7); color:#d3ac67;
+      padding:4px 8px; border-radius:4px;
+      text-decoration:none; font-weight:bold; font-size:0.75em;
     }
     .container {
-      background:rgba(0,0,0,0.85);
-      border-radius:12px;
-      max-width:500px;
-      width:90%;
-      margin:30px auto 20px;
+      background:rgba(0,0,0,0.85); border-radius:12px;
+      max-width:500px; width:90%; margin:30px auto 20px;
       padding:20px;
     }
     h1 {
       font-family:'TTSuperMolot',serif;
-      font-size:1.4em;
-      color:#d3ac67;
-      text-transform:uppercase;
-      text-align:center;
+      font-size:1.4em; color:#d3ac67;
+      text-transform:uppercase; text-align:center;
       margin-bottom:8px;
     }
     h2 {
-      font-size:1.1em;
-      text-align:center;
-      margin-bottom:12px;
-      color:#fff;
+      font-size:1.1em; text-align:center;
+      margin-bottom:12px; color:#fff;
     }
     p {
       font-family:'TTSuperMolot',serif;
-      text-align:center;
-      line-height:1.4;
+      text-align:center; line-height:1.4;
       margin-bottom:16px;
     }
-    form { display:flex; flex-direction:column }
+    form { display:flex; flex-direction:column; }
     input, textarea {
       width:100%; padding:10px;
       border:none; border-radius:6px;
       font-size:1em; margin-bottom:10px;
     }
-    textarea { resize:vertical; min-height:80px }
+    input[type="file"] {
+      display:none;
+    }
+    label.file-btn {
+      display:block; background:#d3ac67; color:#000;
+      text-align:center; padding:12px; border-radius:6px;
+      cursor:pointer; margin-bottom:10px;
+      font-weight:bold;
+    }
     input[type="submit"] {
       background:#d3ac67; color:#000;
       font-weight:bold; padding:12px;
@@ -74,75 +66,72 @@
       cursor:pointer; margin-top:6px;
       transition:background 0.3s;
     }
-    input[type="submit"]:hover { background:#b29752 }
+    input[type="submit"]:hover { background:#b29752; }
     .pix-info {
       text-align:center; margin:16px 0;
       font-family:'TTSuperMolot',serif;
     }
-    .pix-info p:first-child { color:#d3ac67 }
+    .pix-info p:first-child { color:#d3ac67; }
     .pix-info img {
       display:block; margin:8px auto;
       max-width:120px; width:50%; height:auto;
     }
-    .pix-info label {
-      display:block; margin:8px 0 4px; color:#fff;
-      font-weight:bold;
-    }
     .pix-info textarea {
-      width:100%; padding:8px; border-radius:6px;
-      border:none; font-size:0.9em; line-height:1.4;
-      margin-bottom:8px; resize:none;
-      background:rgba(255,255,255,0.1); color:#fff;
+      width:100%; padding:8px; border:none;
+      border-radius:6px; font-size:0.9em; line-height:1.4;
+      resize:none; margin-bottom:8px;
     }
     .pix-info button {
       background:#d3ac67; color:#000;
       border:none; padding:8px 12px;
       border-radius:6px; cursor:pointer;
-      font-weight:bold; margin-bottom:12px;
+      font-weight:bold;
     }
     @media(max-width:600px){
-      h1 { font-size:1.2em }
-      .back-btn a { font-size:0.65em }
-      input[type="submit"] { font-size:0.95em; }
+      h1 { font-size:1.2em; }
+      .back-btn a { font-size:0.65em; }
     }
   </style>
 </head>
 <body>
   <div class="back-btn">
-    <a href="index.html">← Início</a>
+    <a href="/"><span>&larr;</span> Início</a>
   </div>
-
   <div class="container">
     <h1>COMPRA DE E-BOOK</h1>
-    <h2>Preço: R$ 29,90</h2>
-    <p>Preencha nome completo, WhatsApp e e-mail, faça o PIX e anexe o comprovante.</p>
+    <h2>Receba o link na sua caixa de entrada</h2>
+    <p>Preencha seu nome, WhatsApp e e-mail, faça o PIX e anexe o comprovante.</p>
 
     <form action="/submit-ebook" method="POST" enctype="multipart/form-data">
-      <input type="text"    name="name"     placeholder="Nome completo" required>
-      <input type="text"    name="whatsapp" placeholder="WhatsApp"        required>
-      <input type="email"   name="email"    placeholder="E-mail"           required>
+      <input type="text"  name="name"     placeholder="Nome completo" required>
+      <input type="text"  name="whatsapp" placeholder="WhatsApp" required>
+      <input type="email" name="email"    placeholder="E-mail" required>
 
       <div class="pix-info">
         <p>Pagamento via PIX — <strong>RAP FORTE LTDA</strong></p>
         <p>Chave PIX (CNPJ): <strong>40.526.208/0001-63</strong></p>
         <img src="../static/qr_pix_ebook.jpg" alt="QR Code PIX e-Book">
-        <label for="pix-code">Código PIX:</label>
-        <textarea id="pix-code" readonly>00020126430014br.gov.bcb.pix0114405262080001630203Pix520400005303986540529.905802BR5914RAP FORTE LTDA6010ABRE CAMPO62290525Eg1JHB4QzWsHAzDVZmpWlxHp4630435FF</textarea>
-        <button type="button" onclick="copyPix()">Copiar código PIX</button>
+        <label for="pix-code-eb" style="display:block;margin:8px 0 4px;color:#fff;">Código PIX:</label>
+        <textarea id="pix-code-eb" readonly>00020126430014br.gov.bcb.pix0114405262080001630203Pix520400005303986540529.905802BR5914RAP FORTE LTDA6010ABRE CAMPO62290525Eg1JHB4QzWsHAzDVZmpWlxHp4630435FF</textarea>
+        <button type="button" id="copy-eb">Copiar código PIX</button>
       </div>
 
-      <input type="file" name="receipt" accept="image/*,.pdf" required>
+      <label class="file-btn" for="receipt-eb">Escolher comprovante (PIX)</label>
+      <input type="file" id="receipt-eb" name="receipt" accept="image/*,.pdf" required>
+
       <input type="submit" value="Enviar Comprovante e Finalizar Pedido">
     </form>
   </div>
 
   <script>
-    function copyPix() {
-      const txt = document.getElementById('pix-code');
-      txt.select();
-      document.execCommand('copy');
+    document.getElementById('copy-eb').onclick = ()=>{
+      const ta = document.getElementById('pix-code-eb');
+      ta.select(); document.execCommand('copy');
       alert('Código PIX copiado!');
-    }
+    };
+    document.querySelector('label.file-btn').onclick = ()=>{
+      document.getElementById('receipt-eb').click();
+    };
   </script>
 </body>
 </html>
