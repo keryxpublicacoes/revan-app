@@ -19,15 +19,15 @@ def index():
 
 @app.route('/fisico')
 def fisico():
-    return render_template('fisico')
+    return render_template('fisico.html')
 
 @app.route('/ebook')
 def ebook():
-    return render_template('ebook')
+    return render_template('ebook.html')
 
 @app.route('/audiolivro')
 def audiolivro():
-    return render_template('audiolivro')
+    return render_template('audiolivro.html')
 
 # WSDL dos Correios
 WSDL_URL = 'https://soap.correios.com.br/Calculador/CalcPrecoPrazo.asmx?WSDL'
