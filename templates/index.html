@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Revan – Um Testemunho de Fé e Superação</title>
+  <style>
+    /* Import TT SuperMolot Neue */
+    @font-face {
+      font-family: 'TTSuperMolot';
+      src: url('../static/TTSuperMolotNeue.woff2') format('woff2'),
+           url('../static/TTSuperMolotNeue.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; font-family: Arial, sans-serif; color: white; }
+    body {
+      background: url('../static/fundo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .social-bar {
+      width: 100%; background: rgba(0,0,0,0.7); text-align: center; padding: 8px; font-size: 0.9em;
+    }
+    .social-bar a { color: #d3ac67; text-decoration: none; margin: 0 10px; display: inline-flex; align-items: center; transition: color 0.3s; }
+    .social-bar a:hover { color: #fff; }
+    .social-bar a img.icon { width: 14px; height: 14px; margin-right: 5px; }
+    .hero { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px; width: 100%; }
+    .hero-content {
+      background: rgba(0,0,0,0.85);
+      border-radius: 12px;
+      /* ajustar padding-top interno para 10px */
+      padding: 10px 20px 20px;
+      max-width: 960px;
+      width: 95%;
+      display: flex;
+      gap: 10px;
+    }
+    .cover { flex: 1 1 350px; text-align: center; padding-top: 20px; }
+    .cover img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.8); }
+    .info { flex: 2 1 400px; display: flex; flex-direction: column; justify-content: flex-start; padding: 10px; }
+    .info h1 { font-size: 2.5em; color: #d3ac67; margin-bottom: 10px; text-align: center; }
+    .info h2 { font-size: 1.4em; margin-bottom: 25px; text-align: center; color: #fff; font-family: 'TTSuperMolot', serif; }
+    .mockup-info { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px; }
+    .mockup-info .mockup img { max-width: 240px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.8); }
+    /* Apply custom font to synopsis text */
+    .mockup-info .synopse, .full-synopse {
+      font-family: 'TTSuperMolot', serif;
+      color: #fff; line-height: 1.6; font-size: 0.95em;
+    }
+    .mockup-info .synopse p { margin-bottom: 0.8em; }
+    .full-synopse { margin-bottom: 20px; text-align: left; }
+    .info .cta-text { font-size: 1.1em; margin-top: 20px; text-align: center; color: #d3ac67; }
+    .cta-bar {
+      position: fixed; bottom: 0; left: 0; width: 100%; display: flex; justify-content: center; gap: 10px;
+      padding: 10px 10px 15px;
+      background: rgba(0,0,0,0.9);
+    }
+    .cta-bar a { flex: 1; text-align: center; padding: 14px; background: #000; color: #d3ac67; text-decoration: none; font-weight: bold; border-radius: 6px; transition: background 0.3s; }
+    .cta-bar a:hover { background: #333; }
+    @media(max-width: 600px) {
+      .hero-content { flex-direction: column; padding: 30px 10px 20px; }
+      .cover { flex: none; padding-top: 10px; }
+      .cover img { max-width: 90%; height: auto; }
+      .mockup-info { flex-direction: column; align-items: center; }
+      .mockup-info .mockup img { max-width: 200px; }
+      .mockup-info .synopse { width: 100%; text-align: center; }
+      .full-synopse { width: 100%; text-align: center; }
+      .info h1 { font-size: 2em; margin-top: 10px; }
+      .info h2 { font-size: 1.1em; margin-bottom: 20px; }
+      .info .cta-text { font-size: 1em; margin-bottom: 15px; }
+      .cta-bar { padding: 10px 10px 10px; }
+      .cta-bar a { font-size: 0.9em; padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="social-bar">
+    <a href="https://www.instagram.com/lopes.revan/" target="_blank">
+      <img class="icon" src="../static/instagram.png" alt="Instagram">@lopes.revan
+    </a> |
+    <a href="https://www.instagram.com/rap.forte/" target="_blank">@rap.forte</a>
+  </div>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="cover">
+        <img src="../static/capa_livro.jpg" alt="Capa do Livro Revan">
+      </div>
+      <div class="info">
+        <h1>RE<span>VAN</span></h1>
+        <h2>Um Testemunho de Fé e Superação</h2>
+        <div class="mockup-info">
+          <div class="mockup">
+            <img src="../static/mockup_livro.png" alt="Mockup Livro Revan">
+          </div>
+          <div class="synopse">
+            <p>Revan nasceu rejeitado. Cresceu entre abusos, violência e dor. Enfrentou o crime, conheceu o cárcere, sentiu o peso do inferno... mas nada disso foi maior que o chamado de Deus.</p>
+          </div>
+        </div>
+        <div class="full-synopse">
+          <p>Das trevas para a luz. Da morte para a vida. Este livro é um testemunho vivo de que Jesus ainda transforma histórias, ainda resgata os esquecidos e ainda liberta os que estão no fundo do poço.</p>
+          <p>&nbsp;</p>
+          <p>Se você acha que não tem mais jeito, este livro é pra você. Porque quando o Senhor entra em cena, tudo muda. Revan é mais que uma história... é um milagre.</p>
+        </div>
+        <div class="cta-text">Garanta já o seu exemplar e transforme sua história!</div>
+      </div>
+    </div>
+  </section>
+  <nav class="cta-bar">
+    <a href="fisico.html">Livro Físico</a>
+    <a href="ebook.html">e-Book</a>
+    <a href="audiolivro.html">Audiolivro</a>
+  </nav>
+</body>
+</html>

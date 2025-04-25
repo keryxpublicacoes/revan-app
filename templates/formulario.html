@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Revan – A História de um Homem</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('/static/capa.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      background-color: rgba(0, 0, 0, 0.7);
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input, textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 6px;
+      border: none;
+    }
+    input[type="submit"] {
+      background-color: #e2b007;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>RE<span style="color:#e2b007">VAN</span></h1>
+    <h2>A História de um Homem</h2>
+    <p>Das trevas para a luz. Da morte para a vida.</p>
+    <form action="/submit" method="POST" enctype="multipart/form-data">
+      <input type="text" name="name" placeholder="Nome completo" required>
+      <input type="email" name="email" placeholder="E-mail" required>
+      <input type="text" name="whatsapp" placeholder="WhatsApp" required>
+      <textarea name="address" placeholder="Endereço completo (caso precise de entrega)"></textarea>
+      <label>Comprovante de pagamento (Pix):</label>
+      <input type="file" name="receipt" accept="image/*,.pdf" required>
+      <input type="submit" value="Enviar comprovante">
+    </form>
+  </div>
+</body>
+</html>
