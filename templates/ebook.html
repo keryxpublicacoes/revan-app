@@ -112,7 +112,7 @@
       <input type="text" name="name" placeholder="Nome completo" required>
       <input type="email" name="email" placeholder="E-mail" required>
       <input type="text" name="whatsapp" placeholder="WhatsApp" required>
-      <input type="hidden" name="total" value="R$ 29,90">
+      <input type="text" name="total" value="R$ 29,90" readonly>
       <input type="file" name="receipt" accept="image/*" required>
       <input type="submit" value="Enviar Comprovante">
     </form>
@@ -139,7 +139,7 @@
         data.append('name', formData.get('name'));
         data.append('email', formData.get('email'));
         data.append('whatsapp', formData.get('whatsapp'));
-        data.append('total', 'R$ 29,90');
+        data.append('total', formData.get('total'));
         data.append('receipt', base64);
         data.append('type', 'ebook');
 
@@ -148,8 +148,14 @@
           body: data
         });
 
-        const html = await res.text();
-        document.body.innerHTML = html;
+        // Tela bonita de sucesso após enviar
+        document.body.innerHTML = `
+          <div style="background:black; height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:sans-serif; color:white; text-align:center; padding:20px;">
+            <h1 style="color:#d3ac67;">✅ Comprovante enviado com sucesso!</h1>
+            <p style="margin-top:20px;">Você receberá em breve a confirmação no seu e-mail.</p>
+            <a href="/" style="margin-top:30px; display:inline-block; background:#d3ac67; color:black; padding:10px 20px; border-radius:6px; font-weight:bold; text-decoration:none;">Voltar para o Início</a>
+          </div>
+        `;
       };
       reader.readAsDataURL(file);
     });
