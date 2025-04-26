@@ -1,38 +1,158 @@
-<!-- ebook.html -->
-<input type="hidden" name="type" value="ebook">
-<input type="text" name="name" placeholder="Nome completo" required>
-<input type="email" name="email" placeholder="E-mail" required>
-<input type="text" name="whatsapp" placeholder="WhatsApp" required>
-<input type="hidden" name="total" value="R$ 29,90">
-<input type="file" name="receipt" accept="image/*" required>
-<input type="submit" value="Enviar Comprovante">
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Revan – eBook</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('../static/fundo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      padding: 20px;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.85);
+      max-width: 400px;
+      margin: 30px auto;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    h1 {
+      color: #d3ac67;
+      font-size: 1.4em;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+      margin-top: 20px;
+    }
+    input, textarea {
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1em;
+    }
+    input[type="submit"] {
+      background: #d3ac67;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .back-btn {
+      text-align: left;
+      margin-bottom: 10px;
+    }
+    .back-btn a {
+      color: #d3ac67;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9em;
+    }
+    .mockup {
+      width: 100%;
+      max-width: 220px;
+      margin: 0 auto 20px;
+      display: block;
+    }
+    .pix-info {
+      margin: 20px 0 0;
+      text-align: center;
+    }
+    .pix-info img {
+      width: 120px;
+      margin: 10px auto;
+      display: block;
+    }
+    .pix-info textarea {
+      width: 80%;
+      height: 40px;
+      font-size: 0.85em;
+      border-radius: 6px;
+      resize: none;
+      text-align: center;
+    }
+    .pix-info button {
+      background: #d3ac67;
+      color: black;
+      font-weight: bold;
+      padding: 8px;
+      margin-top: 8px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="back-btn"><a href="/">← Início</a></div>
+    <img src="../static/mockup_cel.png" alt="Mockup eBook" class="mockup">
+    <h1>Compra de eBook - R$ 29,90</h1>
 
-<script>
-  const form = document.getElementById('ebook-form');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-    const file = formData.get('receipt');
-    const reader = new FileReader();
+    <div class="pix-info">
+      <p>Pagamento via PIX — <strong>RAP FORTE LTDA</strong></p>
+      <p>Chave PIX (CNPJ): <strong>40.526.208/0001-63</strong></p>
+      <img src="../static/qr_pix_ebook.jpg" alt="QR Code eBook">
+      <label for="pix-code">Código PIX:</label>
+      <textarea id="pix-code" readonly>00020126430014br.gov.bcb.pix0114405262080001630203Pix520400005303986540529.905802BR5914RAP FORTE LTDA6010ABRE CAMPO62290525Eg1JHB4QzWsHAzDVZmpWlxHp4630435FF</textarea>
+      <button onclick="copiarPix()">Copiar código PIX</button>
+    </div>
 
-    reader.onloadend = async () => {
-      const base64 = reader.result.split(',')[1];
-      const data = new URLSearchParams();
-      data.append('name', formData.get('name'));
-      data.append('email', formData.get('email'));
-      data.append('whatsapp', formData.get('whatsapp'));
-      data.append('total', 'R$ 29,90');
-      data.append('receipt', base64);
-      data.append('type', 'ebook');
+    <form id="ebook-form">
+      <input type="hidden" name="type" value="ebook">
+      <input type="text" name="name" placeholder="Nome completo" required>
+      <input type="email" name="email" placeholder="E-mail" required>
+      <input type="text" name="whatsapp" placeholder="WhatsApp" required>
+      <input type="hidden" name="total" value="R$ 29,90">
+      <input type="file" name="receipt" accept="image/*" required>
+      <input type="submit" value="Enviar Comprovante">
+    </form>
+  </div>
 
-      const res = await fetch('https://script.google.com/macros/s/AKfycbx_jVZf6hPHqg10xgfylug9z6_da-ECfaWy2SsaCYw3r5C4YC1Vqo01R8M7KhE3Wvv7/exec', {
-        method: 'POST',
-        body: data
-      });
+  <script>
+    function copiarPix() {
+      const textarea = document.getElementById('pix-code');
+      textarea.select();
+      document.execCommand('copy');
+      alert('Código PIX copiado!');
+    }
 
-      const html = await res.text();
-      document.body.innerHTML = html;
-    };
-    reader.readAsDataURL(file);
-  });
-</script>
+    const form = document.getElementById('ebook-form');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const file = formData.get('receipt');
+      const reader = new FileReader();
+
+      reader.onloadend = async () => {
+        const base64 = reader.result.split(',')[1];
+        const data = new URLSearchParams();
+        data.append('name', formData.get('name'));
+        data.append('email', formData.get('email'));
+        data.append('whatsapp', formData.get('whatsapp'));
+        data.append('total', 'R$ 29,90');
+        data.append('receipt', base64);
+        data.append('type', 'ebook');
+
+        const res = await fetch('https://script.google.com/macros/s/AKfycbx_jVZf6hPHqg10xgfylug9z6_da-ECfaWy2SsaCYw3r5C4YC1Vqo01R8M7KhE3Wvv7/exec', {
+          method: 'POST',
+          body: data
+        });
+
+        const html = await res.text();
+        document.body.innerHTML = html;
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
+</body>
+</html>
