@@ -3,111 +3,137 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Revan – A História de um Homem</title>
+  <title>Revan – Um Testemunho de Fé e Superação</title>
   <style>
-    body {
+    @font-face {
+      font-family: 'TTSuperMolot';
+      src: url('../static/TTSuperMolotNeue.woff2') format('woff2'),
+           url('../static/TTSuperMolotNeue.woff')  format('woff');
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
       font-family: Arial, sans-serif;
-      background: url('static/fundo.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: white;
-      margin: 0;
-      padding: 0;
+      color: #fff;
+      background: url('../static/fundo.jpg') center/cover no-repeat fixed;
     }
-    header {
+
+    .social-bar {
+      background: rgba(0,0,0,0.7);
       text-align: center;
-      padding: 40px 20px 20px;
+      padding: 8px 0;
     }
-    header img {
-      max-width: 250px;
-      border-radius: 8px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.6);
-    }
-    .container {
-      background-color: rgba(0, 0, 0, 0.85);
-      max-width: 800px;
-      margin: 30px auto;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.9);
-      text-align: center;
-    }
-    h1 {
-      font-size: 2.2em;
-      margin-bottom: 10px;
-      color: #d3ac67;
-    }
-    h2, p {
-      margin-bottom: 15px;
-    }
-    .button-group {
-      margin-top: 30px;
-    }
-    .button-group a {
-      text-decoration: none;
-      padding: 12px 25px;
-      margin: 10px;
-      background-color: #d3ac67;
-      color: black;
-      font-weight: bold;
-      border-radius: 6px;
-      transition: background-color 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .button-group a:hover {
-      background-color: #b29752;
-    }
-    .icon {
-      font-size: 1.2em;
-    }
-    .instagram-links {
-      margin-top: 10px;
+    .social-bar span {
+      margin: 0 12px;
       font-size: 0.9em;
+      vertical-align: middle;
     }
-    .instagram-links a {
+    .social-bar img {
+      vertical-align: middle;
+      width: 20px;
+      height: 20px;
+      margin-right: 6px;
+    }
+
+    section.hero {
+      max-width: 960px;
+      margin: 40px auto;
+      background: rgba(0,0,0,0.85);
+      border-radius: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      overflow: hidden;
+    }
+    .hero .images {
+      flex: 1 1 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+    }
+    .hero .images img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    .hero .info {
+      flex: 2 1 400px;
+      padding: 20px;
+    }
+    .hero .info h1 {
+      font-family: 'TTSuperMolot', serif;
+      font-size: 2.4em;
+      color: #d3ac67;
+      margin-bottom: 8px;
+    }
+    .hero .info h2 {
+      font-size: 1.4em;
+      margin-bottom: 12px;
+    }
+    .hero .info p {
+      font-size: 0.9375em;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .hero .info .cta-text {
+      text-align: center;
+      margin-top: 20px;
+      font-style: italic;
+    }
+
+    nav.cta-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: space-around;
+    }
+    nav.cta-bar a {
+      flex: 1;
+      text-align: center;
+      padding: 12px 0;
       color: #d3ac67;
       text-decoration: none;
-      margin: 0 8px;
       font-weight: bold;
     }
-    .mockup-livro {
-      max-width: 220px;
-      margin: 20px 0;
-      display: block;
+    nav.cta-bar .icon {
+      margin-right: 6px;
     }
-    @media(max-width:600px){
-      h1 { font-size: 1.8em; }
-      .container { margin: 20px; padding: 20px; }
-      .mockup-livro { max-width: 180px; }
+
+    @media(max-width:600px) {
+      section.hero { flex-direction: column; }
+      .hero .info h1 { font-size: 1.8em; }
+      .hero .info h2 { font-size: 1.2em; }
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <img src="static/capa_livro.jpg" alt="Capa do Livro">
-    <div class="instagram-links">
-      <a href="https://www.instagram.com/lopes.revan/" target="_blank">@lopes.revan</a> |
-      <a href="https://www.instagram.com/rap.forte/" target="_blank">@rap.forte</a>
-    </div>
-  </header>
-
-  <div class="container">
-    <h1>RE<span style="color: #d3ac67;">VAN</span></h1>
-    <h2>A História de um Homem</h2>
-    <p>Das trevas para a luz. Da morte para a vida.</p>
-    <p>Este livro é um testemunho vivo de que Jesus ainda transforma histórias.</p>
-    <p>Se você acha que não tem mais jeito, este livro é pra você.</p>
-
-    <img src="static/mockup_livro.png" alt="Mockup Livro" class="mockup-livro">
-
-    <div class="button-group">
-      <a href="/fisico"><span class="icon">🛒</span>Livro Impresso</a>
-      <a href="/ebook"><span class="icon">🛒</span>eBook</a>
-      <a href="/audiolivro"><span class="icon">🛒</span>Audiolivro</a>
-    </div>
+  <div class="social-bar">
+    <span><img src="../static/instagram.png" alt="">@lopes.revan</span>
+    <span><img src="../static/instagram.png" alt="">@rap.forte</span>
   </div>
 
+  <section class="hero">
+    <div class="images">
+      <img src="../static/capa_livro.jpg" alt="Capa do Livro">
+      <img src="../static/mockup_livro.png" alt="Mockup do Livro">
+    </div>
+    <div class="info">
+      <h1>REVAN</h1>
+      <h2>Um Testemunho de Fé e Superação</h2>
+      <p>Revan nasceu rejeitado. Cresceu entre abusos, violência e dor… mas nada disso foi maior que o chamado de Deus.</p>
+      <p>Das trevas para a luz. Da morte para a vida. Este livro é um testemunho vivo de que Jesus ainda transforma histórias, resgata os esquecidos e liberta os que estão no fundo do poço.</p>
+      <p>Se você acha que não tem mais jeito, este livro é pra você. Porque quando o Senhor entra em cena, tudo muda. Revan é mais que uma história… é um milagre.</p>
+      <div class="cta-text">Garanta já o seu exemplar e transforme sua história!</div>
+    </div>
+  </section>
+
+  <nav class="cta-bar">
+    <a href="/fisico"><span class="icon">&#128722;</span>Livro Físico</a>
+    <a href="/ebook"><span class="icon">&#128722;</span>e-Book</a>
+    <a href="/audiolivro"><span class="icon">&#128722;</span>Audiolivro</a>
+  </nav>
 </body>
 </html>
