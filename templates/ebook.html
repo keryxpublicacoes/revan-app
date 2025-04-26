@@ -1,97 +1,62 @@
+<!-- templates/ebook.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <title>Compra de e-Book</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Revan – Compra de eBook</title>
   <style>
-    @font-face {
-      font-family: 'TTSuperMolot';
-      src: url('../static/TTSuperMolotNeue.woff2') format('woff2'),
-           url('../static/TTSuperMolotNeue.woff')   format('woff');
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      height: 100%;
-      font-family: Arial, sans-serif;
-      color: #fff;
+    body {
       background: url('../static/fundo.jpg') no-repeat center center fixed;
       background-size: cover;
-      padding-bottom: 60px;
-    }
-    .back-btn {
-      position: fixed;
-      bottom: 10px;
-      left: 10px;
-      z-index: 1000;
-    }
-    .back-btn a {
-      background: rgba(0,0,0,0.7);
-      color: #d3ac67;
-      padding: 4px 8px;
-      border-radius: 4px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 0.75em;
+      font-family: Arial, sans-serif;
+      color: white; padding: 20px;
     }
     .container {
       background: rgba(0,0,0,0.85);
       border-radius: 12px;
       max-width: 500px;
-      width: 90%;
-      margin: 30px auto 20px;
+      margin: auto;
       padding: 20px;
     }
     h1 {
-      font-family: 'TTSuperMolot', serif;
-      font-size: 1.5em;
+      font-size: 1.4em;
       color: #d3ac67;
-      text-transform: uppercase;
       text-align: center;
       margin-bottom: 10px;
     }
-    h2 {
-      font-size: 1.1em;
-      text-align: center;
-      margin-bottom: 15px;
-    }
-    p {
-      font-family: 'TTSuperMolot', serif;
-      text-align: center;
-      line-height: 1.4;
-      margin-bottom: 16px;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-    input {
+    input, textarea {
       width: 100%;
       padding: 10px;
+      margin-bottom: 12px;
       border: none;
       border-radius: 6px;
       font-size: 1em;
-      margin-bottom: 10px;
-    }
-    input[type="file"] {
-      font-size: 0.85em;
-      margin-bottom: 14px;
     }
     input[type="submit"] {
       background: #d3ac67;
       color: #000;
       font-weight: bold;
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
       cursor: pointer;
-      margin-top: 6px;
-      transition: background 0.3s;
     }
-    input[type="submit"]:hover { background: #b29752; }
-    @media(max-width:600px){
-      .container { margin: 20px; padding: 15px; }
-      h1 { font-size: 1.3em; }
+    .pix-info {
+      text-align: center;
+    }
+    .pix-info img {
+      max-width: 130px;
+      margin: 10px auto;
+    }
+    .back-btn {
+      text-align: left;
+      margin-top: 10px;
+    }
+    .back-btn a {
+      background: rgba(0,0,0,0.6);
+      padding: 6px 10px;
+      border-radius: 4px;
+      color: #d3ac67;
+      text-decoration: none;
+      font-size: 0.9em;
     }
   </style>
 </head>
@@ -101,19 +66,23 @@
   </div>
 
   <div class="container">
-    <h1>COMPRA DE E-BOOK</h1>
-    <h2>Valor: R$ 29,90</h2>
-    <p>Preencha seus dados, faça o PIX e anexe o comprovante.</p>
-
-    <form action="AQUI_O_LINK_DO_WEBAPP_DO_EBOOK" method="POST" enctype="multipart/form-data">
+    <h1>Compra de e-Book – R$ 19,90</h1>
+    <form action="https://script.google.com/macros/s/AKfycbx_jVZf6hPHqg10xgfylug9z6_da-ECfaWy2SsaCYw3r5C4YC1Vqo01R8M7KhE3Wvv7/exec" method="POST" enctype="multipart/form-data">
       <input type="text" name="name" placeholder="Nome completo" required>
       <input type="email" name="email" placeholder="E-mail" required>
       <input type="text" name="whatsapp" placeholder="WhatsApp" required>
 
-      <label style="margin: 12px 0 6px;">Comprovante de pagamento (PIX):</label>
-      <input type="file" name="receipt" accept="image/*,.pdf" required>
+      <div class="pix-info">
+        <p>Pagamento via PIX — <strong>RAP FORTE LTDA</strong></p>
+        <p>Chave PIX (CNPJ): <strong>40.526.208/0001-63</strong></p>
+        <img src="../static/qr_pix_ebook.jpg" alt="QR Code PIX eBook">
+        <label style="display:block; margin:8px 0 4px;">Código PIX:</label>
+        <textarea readonly>00020126430014br.gov.bcb.pix0114405262080001635204000053039865802BR5914RAP FORTE LTDA6010ABRE CAMPO622905256oCfzouCpgAZax9k9DnpLrbXQr6304DF1D</textarea>
+      </div>
 
-      <input type="submit" value="Enviar Comprovante e Finalizar Pedido">
+      <input type="file" name="receipt" accept="image/*,.pdf" required>
+      <input type="hidden" name="tipo" value="eBook">
+      <input type="submit" value="Enviar Comprovante">
     </form>
   </div>
 </body>
