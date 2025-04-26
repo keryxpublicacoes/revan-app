@@ -97,7 +97,7 @@
     <div class="back-btn"><a href="/">← Início</a></div>
     <img src="../static/mockup_fone.png" alt="Mockup Audiolivro" class="mockup">
     
-    <h1>Receber Audiolivro</h1>
+    <h1>Compra de Audiolivro – R$19,90</h1>
 
     <div class="pix-info">
       <p>Pagamento via PIX — <strong>RAP FORTE LTDA</strong></p>
@@ -113,6 +113,7 @@
       <input type="text" name="name" placeholder="Nome completo" required>
       <input type="email" name="email" placeholder="E-mail" required>
       <input type="text" name="whatsapp" placeholder="WhatsApp" required>
+      <input type="text" name="total" value="R$ 19,90" readonly>
       <input type="file" name="receipt" accept="image/*" required>
       <input type="submit" value="Enviar Comprovante">
     </form>
@@ -139,6 +140,7 @@
         data.append('name', formData.get('name'));
         data.append('email', formData.get('email'));
         data.append('whatsapp', formData.get('whatsapp'));
+        data.append('total', 'R$ 19,90');
         data.append('receipt', base64);
         data.append('type', 'audiolivro');
 
