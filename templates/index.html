@@ -1,141 +1,125 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Revan – Uma história de Superação</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Revan – A História de um Homem</title>
   <style>
-    @font-face {
-      font-family: 'TTSuperMolot';
-      src: url('../static/TTSuperMolotNeue.woff2') format('woff2'),
-           url('../static/TTSuperMolotNeue.woff')  format('woff');
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      height: 100%;
+    body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      color: #fff;
-      background: url('../static/fundo.jpg') center/cover no-repeat fixed;
+      background: url('static/fundo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      padding: 0;
     }
-
-    .social-bar {
+    .header {
+      text-align: center;
+      padding: 20px 10px;
       background: rgba(0,0,0,0.7);
-      text-align: center;
-      padding: 8px 0;
     }
-    .social-bar span {
-      margin: 0 12px;
-      font-size: 0.9em;
-      vertical-align: middle;
-    }
-    .social-bar img {
-      vertical-align: middle;
-      width: 20px;
-      height: 20px;
-      margin-right: 6px;
-    }
-
-    section.hero {
-      max-width: 960px;
-      margin: 40px auto;
-      background: rgba(0,0,0,0.85);
-      border-radius: 12px;
-      display: flex;
-      align-items: flex-start;
-      overflow: hidden;
-    }
-    .image-capa, .image-mockup {
-      flex: 1 1 300px;
-      padding: 20px;
-    }
-    .image-capa img,
-    .image-mockup img {
-      width: 100%;
-      border-radius: 8px;
-      object-fit: cover;
-    }
-    .info {
-      flex: 2 1 400px;
-      padding: 20px;
-    }
-    .info h1 {
-      font-family: 'TTSuperMolot', serif;
-      font-size: 2.4em;
-      color: #d3ac67;
-      margin-bottom: 8px;
-    }
-    .info h2 {
-      font-size: 1.4em;
-      margin-bottom: 12px;
-    }
-    .info p {
-      font-size: 0.9375em;
-      line-height: 1.5;
-      margin-bottom: 10px;
-    }
-    .info .cta-text {
-      text-align: center;
-      margin-top: 20px;
-      font-style: italic;
-    }
-
-    nav.cta-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.8);
-      display: flex;
-      justify-content: space-around;
-    }
-    nav.cta-bar a {
-      flex: 1;
-      text-align: center;
-      padding: 12px 0;
+    .header a {
       color: #d3ac67;
       text-decoration: none;
       font-weight: bold;
+      margin: 0 10px;
+      font-size: 0.9em;
     }
-    nav.cta-bar .icon {
-      margin-right: 6px;
+    .container {
+      background: rgba(0,0,0,0.85);
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
     }
-
-    @media(max-width:600px) {
-      section.hero { flex-direction: column; }
-      .info h1 { font-size: 1.8em; }
-      .info h2 { font-size: 1.2em; }
+    .mockup-capa {
+      width: 100%;
+      max-width: 250px;
+      display: block;
+      margin: 0 auto 20px;
+    }
+    .content {
+      text-align: center;
+    }
+    h1 {
+      font-family: 'TTSuperMolot', serif;
+      color: #d3ac67;
+      font-size: 2em;
+      margin: 10px 0;
+    }
+    h2 {
+      font-size: 1.2em;
+      margin: 10px 0;
+    }
+    p {
+      margin: 10px 0;
+      font-size: 0.95em;
+      line-height: 1.5;
+    }
+    .mockup-livro {
+      width: 100%;
+      max-width: 200px;
+      margin: 20px auto 20px;
+      display: block;
+    }
+    .button-group {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .button-group a {
+      background: #d3ac67;
+      color: black;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .button-group a:hover {
+      background: #b29752;
+    }
+    .icon {
+      font-size: 1.2em;
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6em; }
+      .mockup-capa, .mockup-livro { max-width: 180px; }
+      .button-group a { font-size: 0.9em; padding: 10px; }
     }
   </style>
 </head>
 <body>
-  <div class="social-bar">
-    <span><img src="../static/instagram.png" alt="">@lopes.revan</span>
-    <span><img src="../static/instagram.png" alt="">@rap.forte</span>
+
+  <div class="header">
+    <a href="https://www.instagram.com/lopes.revan/" target="_blank">Instagram Revan</a> |
+    <a href="https://www.instagram.com/rap.forte/" target="_blank">Instagram Rap Forte</a>
   </div>
 
-  <section class="hero">
-    <div class="image-capa">
-      <img src="../static/capa_livro.jpg" alt="Capa do Livro">
-    </div>
+  <div class="container">
+    <img src="static/capa_livro.jpg" alt="Capa do Livro" class="mockup-capa">
 
-    <div class="info">
-      <h1>REVAN</h1>
-      <h2>Uma História de Superação</h2>
-      <p style="font-size:0.875em;">Revan nasceu rejeitado. Cresceu entre violência e dor… mas nada disso foi maior que o chamado de Deus.</p>
-      <p style="font-size:0.875em;">Das trevas para a luz. Da morte para a vida. Este livro é um testemunho vivo de que Jesus ainda transforma histórias, resgata os esquecidos e liberta os que estão no fundo do poço.</p>
-      <p style="font-size:0.875em;">Se você acha que não tem mais jeito, este livro é pra você. Porque quando o Senhor entra em cena, tudo muda. Revan é mais que uma história… é um milagre.</p>
-      <div class="cta-text">Garanta já o seu exemplar e transforme sua história!</div>
-    </div>
+    <div class="content">
+      <h1>RE<span style="color: #d3ac67;">VAN</span></h1>
+      <h2>A História de um Homem</h2>
+      <p>Das trevas para a luz. Da morte para a vida.</p>
+      <p>Este livro é um testemunho vivo de que Jesus ainda transforma histórias.</p>
+      <p>Se você acha que não tem mais jeito, este livro é pra você.</p>
 
-    <div class="image-mockup">
-      <img src="../static/mockup_livro.png" alt="Mockup do Livro">
-    </div>
-  </section>
+      <img src="static/mockup_livro.png" alt="Mockup Livro" class="mockup-livro">
 
-  <nav class="cta-bar">
-    <a href="/fisico"><span class="icon">&#128722;</span>Livro Físico</a>
-    <a href="/ebook"><span class="icon">&#128722;</span>e-Book</a>
-    <a href="/audiolivro"><span class="icon">&#128722;</span>Audiolivro</a>
-  </nav>
+      <div class="button-group">
+        <a href="/fisico"><span class="icon">🛒</span>Livro Impresso</a>
+        <a href="/ebook"><span class="icon">🛒</span>eBook</a>
+        <a href="/audiolivro"><span class="icon">🛒</span>Audiolivro</a>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
