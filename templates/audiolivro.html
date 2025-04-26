@@ -1,38 +1,171 @@
-<!-- audiolivro.html -->
-<input type="hidden" name="type" value="audiolivro">
-<input type="text" name="name" placeholder="Nome completo" required>
-<input type="email" name="email" placeholder="E-mail" required>
-<input type="text" name="whatsapp" placeholder="WhatsApp" required>
-<input type="hidden" name="total" value="R$ 19,90">
-<input type="file" name="receipt" accept="image/*" required>
-<input type="submit" value="Enviar Comprovante">
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Revan – Audiolivro</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('../static/fundo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      padding: 20px;
+    }
+    .container {
+      background: rgba(0, 0, 0, 0.85);
+      max-width: 400px;
+      margin: 30px auto;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    h1 {
+      color: #d3ac67;
+      font-size: 1.4em;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+      margin-top: 20px;
+    }
+    input, textarea {
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1em;
+    }
+    input[type="submit"] {
+      background: #d3ac67;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .back-btn {
+      text-align: left;
+      margin-bottom: 10px;
+    }
+    .back-btn a {
+      color: #d3ac67;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9em;
+    }
+    .mockup {
+      width: 100%;
+      max-width: 260px;
+      margin: 0 auto 20px;
+      display: block;
+    }
+    .pix-info {
+      margin: 20px 0 0;
+      text-align: center;
+    }
+    .pix-info img {
+      width: 120px;
+      margin: 10px auto;
+      display: block;
+    }
+    .pix-info textarea {
+      width: 80%;
+      height: 40px;
+      font-size: 0.85em;
+      border-radius: 6px;
+      resize: none;
+      text-align: center;
+    }
+    .pix-info button {
+      background: #d3ac67;
+      color: black;
+      font-weight: bold;
+      padding: 8px;
+      margin-top: 8px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="back-btn"><a href="/">← Início</a></div>
+    <img src="../static/mockup_fone.png" alt="Mockup Audiolivro" class="mockup">
+    <h1>Compra de Audiolivro - R$ 19,90</h1>
 
-<script>
-  const form = document.getElementById('audio-form');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-    const file = formData.get('receipt');
-    const reader = new FileReader();
+    <div class="pix-info">
+      <p>Pagamento via PIX — <strong>RAP FORTE LTDA</strong></p>
+      <p>Chave PIX (CNPJ): <strong>40.526.208/0001-63</strong></p>
+      <img src="../static/qr_pix_audiolivro.jpg" alt="QR Code Audiolivro">
+      <label for="pix-code">Código PIX:</label>
+      <textarea id="pix-code" readonly>00020126430014br.gov.bcb.pix0114405262080001630203Pix520400005303986540519.905802BR5914RAP FORTE LTDA6010ABRE CAMPO62290525ulN63jTOdYphZAiaF15mBgcDH6304BF15</textarea>
+      <button onclick="copiarPix()">Copiar código PIX</button>
+    </div>
 
-    reader.onloadend = async () => {
-      const base64 = reader.result.split(',')[1];
-      const data = new URLSearchParams();
-      data.append('name', formData.get('name'));
-      data.append('email', formData.get('email'));
-      data.append('whatsapp', formData.get('whatsapp'));
-      data.append('total', 'R$ 19,90');
-      data.append('receipt', base64);
-      data.append('type', 'audiolivro');
+    <form id="audio-form">
+      <input type="hidden" name="type" value="audiolivro">
+      <input type="text" name="name" placeholder="Nome completo" required>
+      <input type="email" name="email" placeholder="E-mail" required>
+      <input type="text" name="whatsapp" placeholder="WhatsApp" required>
+      <input type="hidden" name="total" value="R$ 19,90">
+      <input type="file" name="receipt" accept="image/*" required>
+      <input type="submit" value="Enviar Comprovante">
+    </form>
+  </div>
 
-      const res = await fetch('https://script.google.com/macros/s/AKfycbx_jVZf6hPHqg10xgfylug9z6_da-ECfaWy2SsaCYw3r5C4YC1Vqo01R8M7KhE3Wvv7/exec', {
-        method: 'POST',
-        body: data
-      });
+  <script>
+    function copiarPix() {
+      const textarea = document.getElementById('pix-code');
+      textarea.select();
+      document.execCommand('copy');
+      alert('Código PIX copiado!');
+    }
 
-      const html = await res.text();
-      document.body.innerHTML = html;
-    };
-    reader.readAsDataURL(file);
-  });
-</script>
+    const form = document.getElementById('audio-form');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const file = formData.get('receipt');
+      const reader = new FileReader();
+
+      reader.onloadend = async () => {
+        const base64 = reader.result.split(',')[1];
+        const data = new URLSearchParams();
+        data.append('name', formData.get('name'));
+        data.append('email', formData.get('email'));
+        data.append('whatsapp', formData.get('whatsapp'));
+        data.append('total', formData.get('total'));
+        data.append('receipt', base64);
+        data.append('type', 'audiolivro');
+
+        try {
+          const res = await fetch('https://script.google.com/macros/s/AKfycbx_jVZf6hPHqg10xgfylug9z6_da-ECfaWy2SsaCYw3r5C4YC1Vqo01R8M7KhE3Wvv7/exec', {
+            method: 'POST',
+            body: data
+          });
+
+          if (res.ok) {
+            document.body.innerHTML = `
+              <div style="background:black; height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:sans-serif; color:white; text-align:center; padding:20px;">
+                <h1 style="color:#d3ac67;">✅ Comprovante enviado com sucesso!</h1>
+                <p style="margin-top:20px;">Você receberá em breve a confirmação no seu e-mail.</p>
+                <a href="/" style="margin-top:30px; display:inline-block; background:#d3ac67; color:black; padding:10px 20px; border-radius:6px; font-weight:bold; text-decoration:none;">Voltar para o Início</a>
+              </div>
+            `;
+          } else {
+            alert('Ocorreu um erro ao enviar. Por favor, tente novamente.');
+          }
+        } catch (error) {
+          alert('Erro de conexão. Verifique sua internet e tente novamente.');
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
+</body>
+</html>
