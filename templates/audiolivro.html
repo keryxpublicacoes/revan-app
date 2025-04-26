@@ -109,6 +109,7 @@
     </div>
 
     <form id="audio-form">
+      <input type="hidden" name="type" value="audiolivro">
       <input type="text" name="name" placeholder="Nome completo" required>
       <input type="email" name="email" placeholder="E-mail" required>
       <input type="text" name="whatsapp" placeholder="WhatsApp" required>
@@ -139,6 +140,7 @@
         data.append('email', formData.get('email'));
         data.append('whatsapp', formData.get('whatsapp'));
         data.append('receipt', base64);
+        data.append('type', 'audiolivro');
 
         const res = await fetch('https://script.google.com/macros/s/AKfycbx_jVZf6hPHqg10xgfylug9z6_da-ECfaWy2SsaCYw3r5C4YC1Vqo01R8M7KhE3Wvv7/exec', {
           method: 'POST',
