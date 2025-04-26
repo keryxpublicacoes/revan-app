@@ -19,16 +19,19 @@
       margin: 30px auto;
       padding: 20px;
       border-radius: 12px;
+      text-align: center;
     }
     h1 {
       color: #d3ac67;
-      text-align: center;
       font-size: 1.4em;
+      margin-top: 10px;
+      margin-bottom: 20px;
     }
     form {
       display: flex;
       flex-direction: column;
       gap: 10px;
+      text-align: left;
     }
     input {
       padding: 10px;
@@ -52,11 +55,22 @@
       font-weight: bold;
       font-size: 0.9em;
     }
+    .mockup {
+      width: 100%;
+      max-width: 220px;
+      margin: 0 auto 20px;
+    }
+    @media (max-width: 500px) {
+      .container {
+        padding: 16px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="back-btn"><a href="/">← Início</a></div>
+    <img src="../static/mockup_cel.png" alt="Mockup Celular" class="mockup">
     <h1>Receber eBook</h1>
     <form id="ebook-form">
       <input type="text" name="name" placeholder="Nome completo" required>
