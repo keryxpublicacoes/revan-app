@@ -25,6 +25,10 @@
       color: #d3ac67;
       font-size: 1.4em;
       margin-top: 10px;
+      margin-bottom: 8px;
+    }
+    h2 {
+      font-size: 1.1em;
       margin-bottom: 20px;
     }
     form {
@@ -39,6 +43,10 @@
       border-radius: 6px;
       border: none;
       font-size: 1em;
+    }
+    input[readonly] {
+      background: #fff;
+      color: #000;
     }
     input[type="submit"] {
       background: #d3ac67;
@@ -97,7 +105,8 @@
     <div class="back-btn"><a href="/">← Início</a></div>
     <img src="../static/mockup_cel.png" alt="Mockup eBook" class="mockup">
 
-    <h1>Receber eBook</h1>
+    <h1>Compra de eBook</h1>
+    <h2>Valor unitário: R$ 29,90</h2>
 
     <div class="pix-info">
       <p>Pagamento via PIX — <strong>RAP FORTE LTDA</strong></p>
@@ -110,11 +119,14 @@
 
     <form id="ebook-form">
       <input type="hidden" name="type" value="ebook">
+      <input type="hidden" name="value" value="29.90">
+
       <input type="text" name="name" placeholder="Nome completo" required>
       <input type="email" name="email" placeholder="E-mail" required>
       <input type="text" name="whatsapp" placeholder="WhatsApp" required>
-      <input type="file" name="receipt" accept="image/*" required>
-      <input type="submit" value="Enviar Comprovante">
+      <input type="file" id="file-receipt" accept="image/*" required>
+      <input type="hidden" id="receipt" name="receipt">
+      <input type="submit" value="Enviar Comprovante e Finalizar Pedido">
     </form>
   </div>
 
@@ -128,29 +140,18 @@
 
     const form = document.getElementById('ebook-form');
     form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      const file = formData.get('receipt');
-      const reader = new FileReader();
-
-      reader.onloadend = async () => {
-        const base64 = reader.result.split(',')[1];
-        const data = new URLSearchParams();
-        data.append('name', formData.get('name'));
-        data.append('email', formData.get('email'));
-        data.append('whatsapp', formData.get('whatsapp'));
-        data.append('receipt', base64);
-        data.append('type', 'ebook');
-
-        const res = await fetch('https://script.google.com/macros/s/AKfycbx_jVZf6hPHqg10xgfylug9z6_da-ECfaWy2SsaCYw3r5C4YC1Vqo01R8M7KhE3Wvv7/exec', {
-          method: 'POST',
-          body: data
-        });
-
-        const html = await res.text();
-        document.body.innerHTML = html;
-      };
-      reader.readAsDataURL(file);
+      const fileInput = document.getElementById('file-receipt');
+      if (fileInput.files.length > 0) {
+        e.preventDefault();
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const base64String = reader.result.split(',')[1];
+          document.getElementById('receipt').value = base64String;
+          form.submit();
+        };
+        reader.readAsDataURL(file);
+      }
     });
   </script>
 </body>
