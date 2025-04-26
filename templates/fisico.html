@@ -19,11 +19,19 @@
       background-size: cover;
       padding-bottom: 60px;
     }
+    .container {
+      background: rgba(0,0,0,0.85);
+      border-radius: 12px;
+      max-width: 800px;
+      width: 90%;
+      margin: 30px auto 20px;
+      padding: 20px;
+      position: relative;
+    }
     .back-btn {
       position: absolute;
-      top: 15px;
-      left: 15px;
-      z-index: 1000;
+      top: 20px;
+      left: 20px;
     }
     .back-btn a {
       background: rgba(0,0,0,0.7);
@@ -34,18 +42,11 @@
       font-weight: bold;
       font-size: 0.75em;
     }
-    .container {
-      background: rgba(0,0,0,0.85);
-      border-radius: 12px;
-      max-width: 800px;
-      width: 90%;
-      margin: 60px auto 20px;
-      padding: 20px;
-    }
     .hero {
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
+      margin-top: 40px;
     }
     .image-capa {
       flex: 1 1 280px;
@@ -177,11 +178,11 @@
 </head>
 <body>
 
-  <div class="back-btn">
-    <a href="/">← Início</a>
-  </div>
-
   <div class="container">
+    <div class="back-btn">
+      <a href="/">← Início</a>
+    </div>
+
     <div class="hero">
       <div class="image-capa">
         <img src="../static/capa_livro.jpg" alt="Capa do Livro">
