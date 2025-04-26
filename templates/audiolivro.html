@@ -46,6 +46,10 @@
       font-weight: bold;
       cursor: pointer;
     }
+    input[readonly] {
+      background: #ccc;
+      color: #000;
+    }
     .back-btn {
       text-align: left;
       margin-bottom: 10px;
@@ -112,7 +116,7 @@
       <input type="text" name="name" placeholder="Nome completo" required>
       <input type="email" name="email" placeholder="E-mail" required>
       <input type="text" name="whatsapp" placeholder="WhatsApp" required>
-      <input type="hidden" name="total" value="R$ 19,90">
+      <input type="text" name="total" value="R$ 19,90" readonly>
       <input type="file" name="receipt" accept="image/*" required>
       <input type="submit" value="Enviar Comprovante">
     </form>
@@ -149,19 +153,10 @@
             body: data
           });
 
-          if (res.ok) {
-            document.body.innerHTML = `
-              <div style="background:black; height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:sans-serif; color:white; text-align:center; padding:20px;">
-                <h1 style="color:#d3ac67;">✅ Comprovante enviado com sucesso!</h1>
-                <p style="margin-top:20px;">Você receberá em breve a confirmação no seu e-mail.</p>
-                <a href="/" style="margin-top:30px; display:inline-block; background:#d3ac67; color:black; padding:10px 20px; border-radius:6px; font-weight:bold; text-decoration:none;">Voltar para o Início</a>
-              </div>
-            `;
-          } else {
-            alert('Ocorreu um erro ao enviar. Por favor, tente novamente.');
-          }
-        } catch (error) {
-          alert('Erro de conexão. Verifique sua internet e tente novamente.');
+          const html = await res.text();
+          document.body.innerHTML = html;
+        } catch {
+          alert('Erro ao enviar comprovante. Tente novamente.');
         }
       };
       reader.readAsDataURL(file);
