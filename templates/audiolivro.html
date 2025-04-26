@@ -1,89 +1,98 @@
-<!-- templates/audiolivro.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Compra de Audiolivro</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revan – Audiolivro</title>
   <style>
     body {
+      margin: 0;
+      font-family: Arial, sans-serif;
       background: url('../static/fundo.jpg') no-repeat center center fixed;
       background-size: cover;
-      font-family: Arial, sans-serif;
-      color: white; padding: 20px;
-    }
-    .container {
-      background: rgba(0,0,0,0.85);
-      border-radius: 12px;
-      max-width: 500px;
-      margin: auto;
+      color: white;
       padding: 20px;
     }
+    .container {
+      background: rgba(0, 0, 0, 0.85);
+      max-width: 400px;
+      margin: 30px auto;
+      padding: 20px;
+      border-radius: 12px;
+    }
     h1 {
-      font-size: 1.4em;
       color: #d3ac67;
       text-align: center;
-      margin-bottom: 10px;
+      font-size: 1.4em;
     }
-    input, textarea {
-      width: 100%;
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    input {
       padding: 10px;
-      margin-bottom: 12px;
-      border: none;
       border-radius: 6px;
+      border: none;
       font-size: 1em;
     }
     input[type="submit"] {
       background: #d3ac67;
-      color: #000;
+      color: black;
       font-weight: bold;
       cursor: pointer;
     }
-    .pix-info {
-      text-align: center;
-    }
-    .pix-info img {
-      max-width: 130px;
-      margin: 10px auto;
-    }
     .back-btn {
       text-align: left;
-      margin-top: 10px;
+      margin-bottom: 10px;
     }
     .back-btn a {
-      background: rgba(0,0,0,0.6);
-      padding: 6px 10px;
-      border-radius: 4px;
       color: #d3ac67;
       text-decoration: none;
+      font-weight: bold;
       font-size: 0.9em;
     }
   </style>
 </head>
 <body>
-  <div class="back-btn">
-    <a href="/">← Início</a>
-  </div>
-
   <div class="container">
-    <h1>Compra de Audiolivro – R$ 29,90</h1>
-    <form action="https://script.google.com/macros/s/AKfycbx_jVZf6hPHqg10xgfylug9z6_da-ECfaWy2SsaCYw3r5C4YC1Vqo01R8M7KhE3Wvv7/exec" method="POST" enctype="multipart/form-data">
+    <div class="back-btn"><a href="/">← Início</a></div>
+    <h1>Receber Audiolivro</h1>
+    <form id="audio-form">
       <input type="text" name="name" placeholder="Nome completo" required>
       <input type="email" name="email" placeholder="E-mail" required>
       <input type="text" name="whatsapp" placeholder="WhatsApp" required>
-
-      <div class="pix-info">
-        <p>Pagamento via PIX — <strong>RAP FORTE LTDA</strong></p>
-        <p>Chave PIX (CNPJ): <strong>40.526.208/0001-63</strong></p>
-        <img src="../static/qr_pix_audiolivro.jpg" alt="QR Code PIX Audiolivro">
-        <label style="display:block; margin:8px 0 4px;">Código PIX:</label>
-        <textarea readonly>00020126430014br.gov.bcb.pix0114405262080001635204000053039865802BR5914RAP FORTE LTDA6010ABRE CAMPO622905256VUCJ8yWHbRGh8bg8weDbGzBd630483A6</textarea>
-      </div>
-
-      <input type="file" name="receipt" accept="image/*,.pdf" required>
-      <input type="hidden" name="tipo" value="Audiolivro">
+      <input type="file" name="receipt" accept="image/*" required>
       <input type="submit" value="Enviar Comprovante">
     </form>
   </div>
+
+  <script>
+    const form = document.getElementById('audio-form');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const file = formData.get('receipt');
+
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        const base64 = reader.result.split(',')[1];
+        const data = new URLSearchParams();
+        data.append('name', formData.get('name'));
+        data.append('email', formData.get('email'));
+        data.append('whatsapp', formData.get('whatsapp'));
+        data.append('receipt', base64);
+
+        const res = await fetch('https://script.google.com/macros/s/AKfycbx_jVZf6hPHqg10xgfylug9z6_da-ECfaWy2SsaCYw3r5C4YC1Vqo01R8M7KhE3Wvv7/exec', {
+          method: 'POST',
+          body: data
+        });
+
+        const html = await res.text();
+        document.body.innerHTML = html;
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
 </body>
 </html>
