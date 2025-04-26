@@ -46,10 +46,6 @@
       font-weight: bold;
       cursor: pointer;
     }
-    input[readonly] {
-      background: #ccc;
-      color: #000;
-    }
     .back-btn {
       text-align: left;
       margin-bottom: 10px;
@@ -111,13 +107,14 @@
       <button onclick="copiarPix()">Copiar código PIX</button>
     </div>
 
-    <form id="ebook-form">
+    <form id="ebook-form" action="https://script.google.com/macros/s/AKfycbx_jVZf6hPHqg10xgfylug9z6_da-ECfaWy2SsaCYw3r5C4YC1Vqo01R8M7KhE3Wvv7/exec" method="POST">
       <input type="hidden" name="type" value="ebook">
+      <input type="hidden" id="receipt" name="receipt">
       <input type="text" name="name" placeholder="Nome completo" required>
       <input type="email" name="email" placeholder="E-mail" required>
       <input type="text" name="whatsapp" placeholder="WhatsApp" required>
       <input type="text" name="total" value="R$ 29,90" readonly>
-      <input type="file" name="receipt" accept="image/*" required>
+      <input type="file" id="file-receipt" accept="image/*" required>
       <input type="submit" value="Enviar Comprovante">
     </form>
   </div>
@@ -130,36 +127,19 @@
       alert('Código PIX copiado!');
     }
 
-    const form = document.getElementById('ebook-form');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      const file = formData.get('receipt');
-      const reader = new FileReader();
-
-      reader.onloadend = async () => {
-        const base64 = reader.result.split(',')[1];
-        const data = new URLSearchParams();
-        data.append('name', formData.get('name'));
-        data.append('email', formData.get('email'));
-        data.append('whatsapp', formData.get('whatsapp'));
-        data.append('total', formData.get('total'));
-        data.append('receipt', base64);
-        data.append('type', 'ebook');
-
-        try {
-          const res = await fetch('https://script.google.com/macros/s/AKfycbx_jVZf6hPHqg10xgfylug9z6_da-ECfaWy2SsaCYw3r5C4YC1Vqo01R8M7KhE3Wvv7/exec', {
-            method: 'POST',
-            body: data
-          });
-
-          const html = await res.text();
-          document.body.innerHTML = html;
-        } catch {
-          alert('Erro ao enviar comprovante. Tente novamente.');
-        }
-      };
-      reader.readAsDataURL(file);
+    document.getElementById('ebook-form').addEventListener('submit', async (e) => {
+      const fileInput = document.getElementById('file-receipt');
+      if (fileInput.files.length > 0) {
+        e.preventDefault();
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const base64String = reader.result.split(',')[1];
+          document.getElementById('receipt').value = base64String;
+          e.target.submit();
+        };
+        reader.readAsDataURL(file);
+      }
     });
   </script>
 </body>
