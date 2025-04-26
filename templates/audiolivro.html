@@ -59,9 +59,10 @@
       width: 100%;
       max-width: 220px;
       margin: 0 auto 20px;
+      display: block;
     }
     .pix-info {
-      margin: 20px 0;
+      margin: 20px 0 0;
       text-align: center;
     }
     .pix-info img {
@@ -91,9 +92,17 @@
 <body>
   <div class="container">
     <div class="back-btn"><a href="/">← Início</a></div>
-    <img src="../static/mockup_fone.png" alt="Mockup Audiolivro" class="mockup">
-    <h1>Receber Audiolivro</h1>
+    <img src="../static/mockup_phone.png" alt="Mockup Audiolivro" class="mockup">
     
+    <h1>Receber Audiolivro</h1>
+    <form id="audio-form">
+      <input type="text" name="name" placeholder="Nome completo" required>
+      <input type="email" name="email" placeholder="E-mail" required>
+      <input type="text" name="whatsapp" placeholder="WhatsApp" required>
+      <input type="file" name="receipt" accept="image/*" required>
+      <input type="submit" value="Enviar Comprovante">
+    </form>
+
     <div class="pix-info">
       <p>Pagamento via PIX — <strong>RAP FORTE LTDA</strong></p>
       <p>Chave PIX (CNPJ): <strong>40.526.208/0001-63</strong></p>
@@ -102,14 +111,6 @@
       <textarea id="pix-code" readonly>00020126430014br.gov.bcb.pix0114405262080001635204000053039865802BR5914RAP FORTE LTDA6010ABRE CAMPO62290525DLj4Km4A3BvmpzHTHz8txbLg6304EF73</textarea>
       <button onclick="copiarPix()">Copiar código PIX</button>
     </div>
-
-    <form id="audio-form">
-      <input type="text" name="name" placeholder="Nome completo" required>
-      <input type="email" name="email" placeholder="E-mail" required>
-      <input type="text" name="whatsapp" placeholder="WhatsApp" required>
-      <input type="file" name="receipt" accept="image/*" required>
-      <input type="submit" value="Enviar Comprovante">
-    </form>
   </div>
 
   <script>
