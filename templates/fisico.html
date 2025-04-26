@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Revan – Compra de Livro Impresso</title>
   <style>
+    /* TODO SEU CSS EXATAMENTE IGUAL */
     @font-face {
       font-family: 'TTSuperMolot';
       src: url('../static/TTSuperMolotNeue.woff2') format('woff2'),
@@ -199,8 +200,11 @@
         </div>
       </div>
     </div>
-    <form action="https://script.google.com/macros/s/AKfycbx_jVZf6hPHqg10xgfylug9z6_da-ECfaWy2SsaCYw3r5C4YC1Vqo01R8M7KhE3Wvv7/exec" method="POST" enctype="multipart/form-data">
+
+    <form id="formulario" action="https://script.google.com/macros/s/AKfycbx_jVZf6hPHqg10xgfylug9z6_da-ECfaWy2SsaCYw3r5C4YC1Vqo01R8M7KhE3Wvv7/exec" method="POST">
       <input type="hidden" name="type" value="fisico">
+      <input type="hidden" id="receipt" name="receipt">
+
       <input type="text" name="name" placeholder="Nome completo" required>
       <input type="email" name="email" placeholder="E-mail" required>
       <input type="text" name="whatsapp" placeholder="WhatsApp" required>
@@ -227,7 +231,7 @@
         <button type="button" id="copy-btn">Copiar código PIX</button>
       </div>
 
-      <input type="file" name="receipt" accept="image/*,.pdf" required>
+      <input type="file" id="file-receipt" accept="image/*,.pdf" required>
       <input type="submit" value="Enviar Comprovante e Finalizar Pedido">
     </form>
   </div>
@@ -254,6 +258,21 @@
       txt.select();
       document.execCommand('copy');
       alert('Código PIX copiado!');
+    });
+
+    document.getElementById('formulario').addEventListener('submit', async (e) => {
+      const fileInput = document.getElementById('file-receipt');
+      if (fileInput.files.length > 0) {
+        e.preventDefault();
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const base64String = reader.result.split(',')[1];
+          document.getElementById('receipt').value = base64String;
+          e.target.submit();
+        };
+        reader.readAsDataURL(file);
+      }
     });
   </script>
 
