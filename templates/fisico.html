@@ -5,8 +5,175 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Revan – Compra de Livro Impresso</title>
   <style>
-    /* ... seu CSS INTEIRO exatamente igual ... */
-    /* (não mexi no estilo, apenas no <script>) */
+    @font-face {
+      font-family: 'TTSuperMolot';
+      src: url('../static/TTSuperMolotNeue.woff2') format('woff2'),
+           url('../static/TTSuperMolotNeue.woff') format('woff');
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      background: url('../static/fundo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      padding-bottom: 60px;
+    }
+    .container {
+      background: rgba(0,0,0,0.85);
+      border-radius: 12px;
+      max-width: 800px;
+      width: 90%;
+      margin: 30px auto 20px;
+      padding: 20px;
+      position: relative;
+    }
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    .back-btn a {
+      background: rgba(0,0,0,0.7);
+      color: #d3ac67;
+      padding: 6px 10px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.75em;
+    }
+    .hero {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+    .image-capa {
+      flex: 1 1 280px;
+    }
+    .image-capa img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    .right-col {
+      flex: 2 1 380px;
+      display: flex;
+      flex-direction: column;
+    }
+    .info h1 {
+      font-family: 'TTSuperMolot', serif;
+      font-size: 1.6em;
+      color: #d3ac67;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .info h2 {
+      font-size: 1.1em;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .info p {
+      font-family: 'TTSuperMolot', serif;
+      font-size: 0.9375em;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+    .info .cta-text {
+      text-align: center;
+      margin-top: 16px;
+      font-style: italic;
+    }
+    .image-mockup {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .image-mockup img {
+      width: 70%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    form {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      margin-bottom: 10px;
+    }
+    input[readonly] {
+      background: #fff;
+      color: #000;
+    }
+    #total {
+      font-weight: bold;
+    }
+    .row {
+      display: flex;
+      gap: 10px;
+    }
+    .row input { flex: 1; }
+    input[type="file"] {
+      font-size:0.85em;
+      margin-bottom:14px;
+    }
+    input[type="submit"] {
+      background:#d3ac67;
+      color:#000;
+      font-weight:bold;
+      padding:12px;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+      margin-top:6px;
+      transition:background 0.3s;
+    }
+    input[type="submit"]:hover { background:#b29752; }
+    .pix-info {
+      text-align:center;
+      margin:16px 0;
+      font-family:'TTSuperMolot', serif;
+    }
+    .pix-info p:first-child { color:#d3ac67; }
+    .pix-info img {
+      display:block;
+      margin:8px auto;
+      max-width:120px;
+      height:auto;
+    }
+    .pix-info textarea {
+      margin:8px auto;
+      width: 90%;
+      background: #fff;
+      color: #000;
+      font-size:0.9em;
+      line-height:1.4;
+      border-radius:6px;
+      padding:8px;
+      border:none;
+      resize:none;
+    }
+    .pix-info button {
+      background:#d3ac67;
+      color:#000;
+      border:none;
+      padding:8px 12px;
+      border-radius:6px;
+      cursor:pointer;
+      font-weight:bold;
+    }
+    @media(max-width:600px) {
+      .hero { flex-direction: column; }
+      .info h1 { font-size:1.4em; }
+      .info h2 { font-size:1em; }
+      input[type="file"] { font-size:0.75em; }
+    }
   </style>
 </head>
 <body>
@@ -32,28 +199,21 @@
         </div>
       </div>
     </div>
-
-    <form id="formulario" action="https://script.google.com/macros/s/AKfycbx_jVZf6hPHqg10xgfylug9z6_da-ECfaWy2SsaCYw3r5C4YC1Vqo01R8M7KhE3Wvv7/exec" method="POST">
+    <form action="https://script.google.com/macros/s/AKfycbx_jVZf6hPHqg10xgfylug9z6_da-ECfaWy2SsaCYw3r5C4YC1Vqo01R8M7KhE3Wvv7/exec" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="type" value="fisico">
-      <input type="hidden" id="receipt" name="receipt">
-
       <input type="text" name="name" placeholder="Nome completo" required>
       <input type="email" name="email" placeholder="E-mail" required>
       <input type="text" name="whatsapp" placeholder="WhatsApp" required>
       <input type="text" name="street" placeholder="Logradouro" required>
-
       <div class="row">
         <input type="text" name="number" placeholder="Número" required>
         <input type="text" name="complement" placeholder="Complemento">
       </div>
-
       <input type="text" name="neighborhood" placeholder="Bairro" required>
-
       <div class="row">
         <input type="text" name="city" placeholder="Cidade" required>
         <input type="text" name="state" maxlength="2" placeholder="UF" required>
       </div>
-
       <input type="text" id="cep" name="cep" placeholder="00000-000" maxlength="9" required>
       <input type="text" id="shipping" name="shipping" placeholder="Frete" readonly>
       <input type="text" id="total" name="total" placeholder="Total (Livro + Frete)" readonly>
@@ -67,7 +227,7 @@
         <button type="button" id="copy-btn">Copiar código PIX</button>
       </div>
 
-      <input type="file" id="receipt-file" accept="image/*,.pdf" required>
+      <input type="file" name="receipt" accept="image/*,.pdf" required>
       <input type="submit" value="Enviar Comprovante e Finalizar Pedido">
     </form>
   </div>
@@ -94,26 +254,6 @@
       txt.select();
       document.execCommand('copy');
       alert('Código PIX copiado!');
-    });
-
-    // NOVO SCRIPT PARA CONVERTER COMPROVANTE
-    document.getElementById('formulario').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const fileInput = document.getElementById('receipt-file');
-      const file = fileInput.files[0];
-
-      if (!file) {
-        alert('Por favor, selecione o comprovante.');
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onload = async () => {
-        document.getElementById('receipt').value = reader.result.split(',')[1];
-        e.target.submit();
-      };
-      reader.readAsDataURL(file);
     });
   </script>
 
